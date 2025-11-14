@@ -1,21 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/day-card.css' %}">
+{% endblock %}
 
 
 {% block month %}
-    <h1>{{ month_name }}</h1>
+    {{ month_name }}
 {% endblock %}
 
 
 {% block dayDisplay %}
     {% for day in data %}
-        <div id="{{ day.0.date }}" >
-            {% for event in day.1 %}
+
+        {% for event in day.1 %}
+
+            <div id="{{ event.title }}" class="day-card">
+
                 <h1>{{ event.title }}</h1>
                 <p>{{ event.notes }}</p>
-                <p>{{ event.start }}</p>
-                <span>{{ event.end }}</span>
-                <p>{{ event.allday }}</p>
-            {% endfor %}
-        </div>
+                {% if event.allday %}
+                    <p>All Day</p>
+                {% else %}
+                    <p>{{ event.start }}-{{ event.end }}</p>
+                {% endif %}
+
+            </div>
+
+        {% endfor %}
+
     {% endfor %}
 {% endblock %}

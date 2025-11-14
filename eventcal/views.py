@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
 from eventcal.forms import CalendarConfigForm
-from eventcal.models import Day
+from eventcal.models import CalendarConfig, Day
 from datetime import date
 
+# simple form to initially get the url and get the info
 def urlUplaod(request):
     template = 'url-form.html'
     form = CalendarConfigForm(request.POST)
+
+    if CalendarConfig.objects.all().count() > 0:
+        return redirect(calendarView)
 
     if request.method == 'POST':
         if form.is_valid():
