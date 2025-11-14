@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Cal Display - calendar view</title>
-</head>
-<body>
-
-<div id="day-display">
-
-</div>
+{% extends 'base.html' %}
 
 
-<div id="daily-notes">
+{% block month %}
+    <h1>{{ month_name }}</h1>
+{% endblock %}
 
-</div>
 
-
-</body>
-</html>
+{% block dayDisplay %}
+    {% for day in data %}
+        <div id="{{ day.0.date }}" >
+            {% for event in day.1 %}
+                <h1>{{ event.title }}</h1>
+                <p>{{ event.notes }}</p>
+                <p>{{ event.start }}</p>
+                <span>{{ event.end }}</span>
+                <p>{{ event.allday }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endblock %}

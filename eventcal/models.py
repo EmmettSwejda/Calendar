@@ -5,7 +5,7 @@ from django.db import models
 class Event(models.Model):
     title = models.CharField(max_length=100)
     notes = models.TextField()
-    Start = models.TimeField()
+    start = models.TimeField()
     end = models.TimeField()
     allday = models.BooleanField(default=False)
 
@@ -13,7 +13,7 @@ class Event(models.Model):
 
 # Describes a day on the calendar
 class Day(models.Model):
-    Date = models.DateField()
+    date = models.DateField()
     events = models.ManyToManyField(Event)
 
 

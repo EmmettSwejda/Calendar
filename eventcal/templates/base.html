@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block css %}{% endblock %}
+    {% block js %}{% endblock %}
+    <meta charset="UTF-8">
+    <title>Cal Display - calendar view</title>
+</head>
+<body>
+
+
+<h1>{% block month %}{% endblock %}</h1>
+
+
+<div id="day-display">
+    {% block dayDisplay %}
+    {% endblock %}
+</div>
+
+
+<div id="daily-notes">
+
+</div>
+
+
+</body>
+</html>
