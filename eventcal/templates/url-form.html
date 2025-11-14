@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cal Display - url upload</title>
+</head>
+<body>
+<div id="url-form-container">
+    <form id="url-form" method="POST" action="{% url 'url-upload' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <button>Submit</button>
+    </form>
+</div>
+</body>
+</html>

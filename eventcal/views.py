@@ -1,8 +1,22 @@
-from django.http import HttpResponse
-from django.template import loader
+from django.shortcuts import render, redirect
+from eventcal.forms import CalendarConfigForm
 
-# Create your views here.
 
-def eventcal(request):
-    template = loader.get_template("base.html")
-    return HttpResponse(template.render())
+def urlUplaod(request):
+    template = 'url-form.html'
+    form = CalendarConfigForm(request.POST)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect(calendarView)
+
+    return render(request, template , {'form': form})
+
+
+# the view to see the basic calendar
+def calendarView(request):
+    template = 'calendar-view.html'
+
+
+    return render(request, template)
