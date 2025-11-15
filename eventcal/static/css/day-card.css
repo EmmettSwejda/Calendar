@@ -17,6 +17,7 @@
     padding: 5px;
     margin: 0;
 }
+
 .month-name{
     margin: 0 auto;
 }
@@ -30,6 +31,7 @@
 html{
     color: gray;
 }
+
 body{
     margin: 0;
 }
