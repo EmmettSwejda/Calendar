@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/base.css"  %}">
     {% block css %}{% endblock %}
     {% block js %}{% endblock %}
     <meta charset="UTF-8">
@@ -9,7 +11,7 @@
 <body>
 
 
-<h1>{% block month %}{% endblock %}</h1>
+{% block month %}{% endblock %}
 
 
 <div id="day-display">

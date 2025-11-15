@@ -1,3 +1,35 @@
 .day-card{
+    height: 116px;
+    width: 220px;
+    padding: 10px;
+    margin: 10px;
+    background-color: rgb(25,25,25);
+    border: 7px rgb(75,75,75) solid;
+    border-radius: 20px;
+}
+
+.card-text, .month-name {
+
     width: fit-content;
+    background-color: rgb(25, 25, 25);
+    border: 5px rgb(75, 75, 75) solid;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 0;
+}
+.month-name{
+    margin: 0 auto;
+}
+
+#day-display{
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+html{
+    color: gray;
+}
+body{
+    margin: 0;
 }

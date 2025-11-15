@@ -3,20 +3,13 @@ from django.db import models
 
 # Describes an event to be shown on the calendar
 class Event(models.Model):
+    uid = models.CharField()
     title = models.CharField(max_length=100)
-    notes = models.TextField()
+    notes = models.TextField(null=True, blank=True)
+    date = models.DateField()
     start = models.TimeField()
     end = models.TimeField()
     allday = models.BooleanField(default=False)
-
-
-
-# Describes a day on the calendar
-class Day(models.Model):
-    date = models.DateField()
-    events = models.ManyToManyField(Event)
-
-
 
 # Holds the url to the webcal file
 class CalendarConfig(models.Model):

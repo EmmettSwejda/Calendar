@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from eventcal.forms import CalendarConfigForm
-from eventcal.models import CalendarConfig, Day
+from eventcal.models import CalendarConfig
+from eventcal.utils import *
 from datetime import date
 
 # simple form to initially get the url and get the info
@@ -24,21 +25,27 @@ def calendarView(request):
     template = 'calendar-view.html'
     today = date.today()
 
+    # Always get the first configuration
+    link = CalendarConfig.objects.get(id=1).url
+
+    # Download the calendar data
+    calendar_data = DownloadCalendar(link)
+
+    # Parse the calendar info
+    ParseCalendar(calendar_data)
+
+
     # Get the days of the current month
-    days = Day.objects.filter(
+    events = Event.objects.filter(
         date__year=today.year,
         date__month=today.month
-    )
-    month = date.today().strftime("%B")
+    ).order_by('date')
 
-    # Store all day info in the data list
-    data = []
+    month = today.strftime("%B")
 
-    for day in days:
-        data.append([day, day.events.all()])
 
     context = {
-        "data": data,
+        "data": events,
         "month_name" : month
     }
 

@@ -6,30 +6,35 @@
     <link rel="stylesheet" href="{% static 'css/day-card.css' %}">
 {% endblock %}
 
+{% block js %}
+    <script src="{% static 'js/reload.js' %}"></script>
+{% endblock %}
 
 {% block month %}
-    {{ month_name }}
+    <h1 class="month-name">{{ month_name }}</h1>
 {% endblock %}
 
 
 {% block dayDisplay %}
-    {% for day in data %}
+    {% for event in data %}
 
-        {% for event in day.1 %}
+        <div id="{{ event.title }}" class= "day-card" >
 
-            <div id="{{ event.title }}" class="day-card">
+            <h2 class="card-text"> {{ event.title }} </h2>
+            <p class="card-text">{{ event.date.day }}</p>
 
-                <h1>{{ event.title }}</h1>
-                <p>{{ event.notes }}</p>
-                {% if event.allday %}
-                    <p>All Day</p>
-                {% else %}
-                    <p>{{ event.start }}-{{ event.end }}</p>
-                {% endif %}
+            {% if not event.notes == None %}
+                <p class="card-text">{{ event.notes }}</p>
+            {% endif %}
 
-            </div>
 
-        {% endfor %}
+            {% if event.allday %}
+                <p class="card-text">All Day</p>
+            {% else %}
+                <p class="card-text">{{ event.start }}-{{ event.end }}</p>
+            {% endif %}
+
+        </div>
 
     {% endfor %}
 {% endblock %}
