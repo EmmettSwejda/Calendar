@@ -1,13 +1,18 @@
 .day-card{
-    height: 116px;
-    width: 220px;
-    padding: 10px;
-    margin: 10px;
+    height: 143px;
+    width: 246px;
+    padding: 7px;
+    margin: 2px 2px 2px 2px;
     background-color: rgb(25,25,25);
     border: 5px rgb(65,65,65) solid;
     border-radius: 20px;
     display: grid;
     grid-template-rows: 41px 41px 41px ;
+    grid-row-gap: 2px;
+    overflow: hidden;
+}
+.disabled{
+    border-color: rgb(32,32,32);
 }
 .day-specific{
     display: grid;
@@ -15,6 +20,8 @@
 }
 .day-events{
     display: grid;
+    grid-row-gap: 2px;
+    grid-column-gap: 2px;
     grid-template-columns: auto auto ;
 }
 
@@ -26,6 +33,12 @@
     border-radius: 10px;
     padding: 5px;
     margin: 0;
+}
+
+.today{
+    border-color: darkseagreen;
+    background-color: darkgreen;
+    color: darkseagreen;
 }
 
 .date{
@@ -57,6 +70,10 @@
 .month-name{
     margin: 0 auto;
 }
+.event{
+    width: 110px;
+    text-align: center;
+}
 
 #day-display{
     display: flex;
@@ -66,6 +83,7 @@
 
 html{
     color: gray;
+    overflow: hidden;
 }
 
 body{

@@ -17,25 +17,43 @@
 
 {% block dayDisplay %}
     {% for day in days %}
+        {% if day.1 %}
+            <div id="{{ day.0|date:"l" }}" class="day-card">
+                <div class="day-specific">
 
-        <div id="{{ day|date:"1" }}" class="day-card">
-            <div class="day-specific">
-                <h2 class="card-text title"> {{ day|date:"l" }} </h2>
-                <p class="card-text date">{{ day|date:"j" }}</p>
-            </div>
-            <div class="day-events">
-                {% for event in data %}
-                    {% if event.date == day %}
-                        <p class="card-text" >{{ event.title }}</p>
-                        {% if event.allday %}
-                            <p class="card-text">All Day</p>
-                        {% else %}
-                            <p class="card-text">{{ event.start }}-{{ event.end }}</p>
-                        {% endif %}
+                    {% if day.0 == today %}
+                        <h2 class="card-text title today"> {{ day.0|date:"l" }} </h2>
+                        <p class="card-text date today">{{ day.0|date:"j" }}</p>
+
+                    {% else %}
+                        <h2 class="card-text title"> {{ day.0|date:"l" }} </h2>
+                        <p class="card-text date">{{ day.0|date:"j" }}</p>
+
                     {% endif %}
-                {% endfor %}
+
+                </div>
+                <div class="day-events">
+                    {% for event in data %}
+                        {% if event.date == day.0 %}
+
+                            <p class="card-text">{{ event.title }}</p>
+
+                            {% if event.allday %}
+                                <p class="card-text event">All Day</p>
+                            {% else %}
+                                <p class="card-text event">{{ event.start }}{{ event.end }}</p>
+                            {% endif %}
+
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
-        </div>
+        {% else %}
+            <div class="day-card disabled">
+
+            </div>
+
+        {% endif %}
 
     {% endfor %}
 {% endblock %}

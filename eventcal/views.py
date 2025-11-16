@@ -1,6 +1,3 @@
-import calendar
-import datetime
-
 from django.shortcuts import render, redirect
 from eventcal.forms import CalendarConfigForm
 from eventcal.models import CalendarConfig
@@ -27,9 +24,7 @@ def urlUplaod(request):
 def calendarView(request):
     template = 'calendar-view.html'
     today = date.today()
-    num_days = calendar.monthrange(today.year, today.month)[1]
-    month_days = [datetime.date(today.year, today.month, day) for day in range(1, num_days + 1)]
-
+    month_days = get_calendar_days(today.year, today.month)
     # Always get the first configuration
     link = CalendarConfig.objects.get(id=1).url
 
@@ -50,6 +45,7 @@ def calendarView(request):
 
 
     context = {
+        "today": today,
         "days": month_days,
         "data": events,
         "month_name" : month
