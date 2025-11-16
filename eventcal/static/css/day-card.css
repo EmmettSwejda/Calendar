@@ -4,18 +4,54 @@
     padding: 10px;
     margin: 10px;
     background-color: rgb(25,25,25);
-    border: 7px rgb(75,75,75) solid;
+    border: 5px rgb(65,65,65) solid;
     border-radius: 20px;
+    display: grid;
+    grid-template-rows: 41px 41px 41px ;
+}
+.day-specific{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.day-events{
+    display: grid;
+    grid-template-columns: auto auto ;
 }
 
 .card-text, .month-name {
-
+    height: fit-content;
     width: fit-content;
     background-color: rgb(25, 25, 25);
-    border: 5px rgb(75, 75, 75) solid;
+    border: 3px rgb(65, 65, 65) solid;
     border-radius: 10px;
     padding: 5px;
     margin: 0;
+}
+
+.date{
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 auto 0 auto;
+}
+
+.title{
+    width: 147px;
+    height: 25px;
+    font-size: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.length{
+    margin: auto 0 auto 0;
+}
+
+.notes{
+    height: 25px;
+    overflow: scroll;
 }
 
 .month-name{
