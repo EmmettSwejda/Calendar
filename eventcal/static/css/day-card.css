@@ -1,0 +1,91 @@
+.day-card{
+    height: 143px;
+    width: 246px;
+    padding: 7px;
+    margin: 2px 2px 2px 2px;
+    background-color: rgb(25,25,25);
+    border: 5px rgb(65,65,65) solid;
+    border-radius: 20px;
+    display: grid;
+    grid-template-rows: 41px 41px 41px ;
+    grid-row-gap: 2px;
+    overflow: hidden;
+}
+.disabled{
+    border-color: rgb(32,32,32);
+}
+.day-specific{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.day-events{
+    display: grid;
+    grid-row-gap: 2px;
+    grid-column-gap: 2px;
+    grid-template-columns: auto auto ;
+}
+
+.card-text, .month-name {
+    height: fit-content;
+    width: fit-content;
+    background-color: rgb(25, 25, 25);
+    border: 3px rgb(65, 65, 65) solid;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 0;
+}
+
+.today{
+    border-color: darkseagreen;
+    background-color: darkgreen;
+    color: darkseagreen;
+}
+
+.date{
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 auto 0 auto;
+}
+
+.title{
+    width: 147px;
+    height: 25px;
+    font-size: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.length{
+    margin: auto 0 auto 0;
+}
+
+.notes{
+    height: 25px;
+    overflow: scroll;
+}
+
+.month-name{
+    margin: 0 auto;
+}
+.event{
+    width: 110px;
+    text-align: center;
+}
+
+#day-display{
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+html{
+    color: gray;
+    overflow: hidden;
+}
+
+body{
+    margin: 0;
+}

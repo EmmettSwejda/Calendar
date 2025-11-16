@@ -7,6 +7,7 @@ from . import views
 
 # urls for this app
 urlpatterns = [
-    path('', views.eventcal, name='eventcal'),
-    path('eventcal/', views.eventcal, name='eventcal'),
+    path('', views.urlUplaod, name='url-upload'),
+    path('calendar/', views.calendarView, name='calendar-view'),
+
 ]

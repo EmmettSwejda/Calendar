@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/base.css"  %}">
+    {% block css %}{% endblock %}
+    {% block js %}{% endblock %}
     <meta charset="UTF-8">
-    <title>My Calendar</title>
+    <title>Cal Display - calendar view</title>
 </head>
 <body>
-<div id="Calendar-Cards">
+
+
+{% block month %}{% endblock %}
+
+
+<div id="day-display">
+    {% block dayDisplay %}
+    {% endblock %}
+</div>
+
+
+<div id="daily-notes">
 
 </div>
-<Div id="Daily-Descriptions">
 
-</Div>
+
 </body>
 </html>

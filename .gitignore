@@ -1,4 +1,11 @@
 
 /.idea
+.vs/
+.vscode/
 /.venv
 db.*
+
+__pycache__/
+*.pyc
+*.log
+*.pot

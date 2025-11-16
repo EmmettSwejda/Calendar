@@ -1,0 +1,21 @@
+html{
+    color: white;
+    text-align: center;
+}
+#url-form-container{
+    margin-top: 33vh;
+}
+label{
+    font-size: 20px;
+    font-weight: bold;
+}
+.errorlist{
+    display: none;
+}
+button{
+    margin-top: 25px;
+}
+#id_url{
+    width: 250px
+}
+

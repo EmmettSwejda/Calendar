@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/day-card.css' %}">
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/reload.js' %}"></script>
+{% endblock %}
+
+{% block month %}
+    <h1 class="month-name">{{ month_name }}</h1>
+{% endblock %}
+
+
+{% block dayDisplay %}
+    {% for day in days %}
+        {% if day.1 %}
+            <div id="{{ day.0|date:"l" }}" class="day-card">
+                <div class="day-specific">
+
+                    {% if day.0 == today %}
+                        <h2 class="card-text title today"> {{ day.0|date:"l" }} </h2>
+                        <p class="card-text date today">{{ day.0|date:"j" }}</p>
+
+                    {% else %}
+                        <h2 class="card-text title"> {{ day.0|date:"l" }} </h2>
+                        <p class="card-text date">{{ day.0|date:"j" }}</p>
+
+                    {% endif %}
+
+                </div>
+                <div class="day-events">
+                    {% for event in data %}
+                        {% if event.date == day.0 %}
+
+                            <p class="card-text">{{ event.title }}</p>
+
+                            {% if event.allday %}
+                                <p class="card-text event">All Day</p>
+                            {% else %}
+                                <p class="card-text event">{{ event.start }}{{ event.end }}</p>
+                            {% endif %}
+
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <div class="day-card disabled">
+
+            </div>
+
+        {% endif %}
+
+    {% endfor %}
+{% endblock %}
