@@ -18,3 +18,8 @@ This project was designed for its application meaning:
 - Single user only
   * Designed to be ran on a LAN typically accessed by one person
   * Single Webcal configuration, cannot show multiple events from different Webcal links
+
+
+# Example Calendar Display
+![UI/img.png](UI-Images/URL-Page.png)
+![img.png](UI-Images/Calendar-Page.png)
