@@ -2,13 +2,15 @@ import calendar
 import datetime
 import requests
 from eventcal.models import Event
-from ics import Calendar
+from icalevents.icalevents import events
+from datetime import timedelta
+from io import BytesIO  # This can be removed if not used elsewhere
 
 # Utilities
 
 # Download the calendar based on the webcal link
 def DownloadCalendar(webcal_link):
-    if webcal_link.startswith('https://'):
+    if webcal_link.startswith('webcal://'):
         webcal_link = webcal_link.replace('webcal://', 'https://')
 
     try:
@@ -23,15 +25,31 @@ def DownloadCalendar(webcal_link):
 
 # Parse calendar information and add to the database
 def ParseCalendar(data):
-    cal = Calendar(data.decode('utf-8'))
     # Not optimal but since speed is not required for this application
     #   just wipe the entire table and re add all events
     #   this solves the issue of figuring out what events have been deleted
     Event.objects.all().delete()
 
-    for even in cal.events:
-        new_event = Event(uid=even.uid, title=even.name, notes=even.description, date=even.begin.date(),
-                          start=even.begin.time(), end=even.end.time(), allday=even.all_day)
+    # Define a reasonable range to expand recurrences (adjust as needed)
+    start_range = datetime.datetime.now() - timedelta(days=365)  # 1 year in the past
+    end_range = datetime.datetime.now() + timedelta(days=365 * 5)  # 5 years in the future
+
+    # Parse and expand events, including recurrences
+    expanded_events = events(string_content=data, start=start_range, end=end_range,fix_apple=True)
+
+    for even in expanded_events:
+        # Create a unique UID for each occurrence to avoid potential uniqueness conflicts
+        occurrence_uid = f"{even.uid}_{even.start.date().isoformat()}"
+
+        new_event = Event(
+            uid=occurrence_uid,
+            title=even.summary,
+            notes=even.description,
+            date=even.start.date(),
+            start=even.start.time(),
+            end=even.end.time(),
+            allday=even.all_day
+        )
 
         new_event.save()
 
