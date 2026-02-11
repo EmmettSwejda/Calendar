@@ -13,4 +13,4 @@ class Event(models.Model):
 
 # Holds the url to the webcal file
 class CalendarConfig(models.Model):
-    url = models.URLField()
+    url = models.CharField((""), max_length=200)

@@ -6,6 +6,17 @@
     <link rel="stylesheet" href="{% static 'css/upload-page.css' %}">
     <meta charset="UTF-8">
     <title>Cal Display - url upload</title>
+    <script>
+document.getElementById("url-form").addEventListener("submit", function () {
+    const input = document.querySelector("input[type='url'], input[type='text']");
+    if (!input) return;
+
+    const value = input.value.trim();
+    if (value.toLowerCase().startsWith("webcal://")) {
+        input.value = "https://" + value.slice(9);
+    }
+});
+</script>
 </head>
 <body>
 <div id="url-form-container">
@@ -13,7 +24,7 @@
     <form id="url-form" method="POST" action="{% url 'url-upload' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_div }}
-        <button>Submit</button>
+        <button id='submit'>Submit</button>
     </form>
 </div>
 </body>
