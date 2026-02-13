@@ -31,7 +31,7 @@
     background-color: rgb(25, 25, 25);
     border: 3px rgb(65, 65, 65) solid;
     border-radius: 10px;
-    padding: 5px;
+    padding: 2px;
     margin: 0;
 }
 
@@ -71,6 +71,7 @@
     margin: 0 auto;
 }
 .event{
+    font-size: 13px;
     width: 110px;
     text-align: center;
 }
