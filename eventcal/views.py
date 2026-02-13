@@ -9,13 +9,21 @@ import base64
 # simple form to initially get the url and get the info
 def urlUplaod(request):
     template = 'url-form.html'
-    
+    img_str = ""
+    dev = False
 
-    img = Generate_Qr_Code("http://" + get_ip() + ":8000?id=second_device")
 
-    buffer = io.BytesIO()
-    img.save(buffer, format='PNG')
-    img_str = base64.b64encode(buffer.getvalue()).decode('utf-8')
+
+
+    if request.GET.get("second_device") is None:
+        dev = True
+        img = Generate_Qr_Code("http://" + get_ip() + ":8000/?second_device=true")
+        buffer = io.BytesIO()
+        img.save(buffer, format='PNG')
+        img_str = base64.b64encode(buffer.getvalue()).decode('utf-8')
+        
+
+
 
     form = CalendarConfigForm(request.POST)
 
@@ -27,8 +35,10 @@ def urlUplaod(request):
             
             form.save()
             return redirect(calendarView)
+        
 
-    return render(request, template , {'form': form, 'qrcode' : img_str })
+
+    return render(request, template , {'form': form, 'main_device' : dev ,'qrcode' : img_str })
 
 
 # the view to see the basic calendar

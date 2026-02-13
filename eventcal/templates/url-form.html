@@ -26,6 +26,9 @@ document.getElementById("url-form").addEventListener("submit", function () {
         {{ form.as_div }}
         <button id='submit'>Submit</button>
     </form>
-    <img src="data:image/png;base64,{{ qrcode }}" alt="Generated Image"></div>
+    {% if main_device %}
+        <img src="data:image/png;base64,{{ qrcode }}" alt="Generated Image"></div>
+    {% endif %}
+
 </body>
 </html>
