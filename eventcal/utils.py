@@ -1,12 +1,35 @@
 import calendar
 import datetime
 import requests
+import qrcode
+import socket
+import os
+from django.conf import settings
 from eventcal.models import Event
 from icalevents.icalevents import events
 from datetime import timedelta
 from io import BytesIO  # This can be removed if not used elsewhere
 
 # Utilities
+
+def Generate_Qr_Code(link):
+    img = qrcode.make(link)
+    name = "img.png" 
+    path = os.path.join(settings.MEDIA_ROOT, "img.png")
+    img.save(path)
+    return img
+
+def get_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # 8.8.8.8 is Google DNS; the port doesn't matter (80)
+        s.connect(("8.8.8.8", 80))
+        local_ip = s.getsockname()[0]
+    except Exception:
+        local_ip = "127.0.0.1"
+    finally:
+        s.close()
+    return local_ip
 
 # Download the calendar based on the webcal link
 def DownloadCalendar(webcal_link):

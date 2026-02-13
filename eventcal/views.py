@@ -3,10 +3,20 @@ from eventcal.forms import CalendarConfigForm
 from eventcal.models import CalendarConfig
 from eventcal.utils import *
 from datetime import date
+import io
+import base64
 
 # simple form to initially get the url and get the info
 def urlUplaod(request):
     template = 'url-form.html'
+    
+
+    img = Generate_Qr_Code("http://" + get_ip() + ":8000?id=second_device")
+
+    buffer = io.BytesIO()
+    img.save(buffer, format='PNG')
+    img_str = base64.b64encode(buffer.getvalue()).decode('utf-8')
+
     form = CalendarConfigForm(request.POST)
 
     if CalendarConfig.objects.all().count() > 0:
@@ -18,7 +28,7 @@ def urlUplaod(request):
             form.save()
             return redirect(calendarView)
 
-    return render(request, template , {'form': form})
+    return render(request, template , {'form': form, 'qrcode' : img_str })
 
 
 # the view to see the basic calendar
