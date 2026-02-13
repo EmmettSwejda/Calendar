@@ -4,7 +4,7 @@ Calendar is a django project designed to be ran on a raspberry pi in my living r
 the goal this project was to replace my current paper calendar that I end up having to redo every month <br>
 taking up a large amount of my time and not dyamically updating everytime a new event is added to my calendar on my phone.
 
-This project allows me to simply input the webcal link as a https link, and have all events displayed.
+This project allows me to simply input the webcal link, and have all events displayed.
 
 # Limitations
 This project was designed for its application meaning:
