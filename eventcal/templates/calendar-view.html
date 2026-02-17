@@ -23,7 +23,7 @@
 
                     {% if day.0 == today %}
                         <h2 class="card-text title today  {{ day.0|date:"j" }}"> {{ day.0|date:"l" }} </h2>
-                        <p class="card-text date today">{{ day.0|date:"j" }}</p>
+                        <p class="card-text date ">{{ day.0|date:"j" }}</p>
 
                     {% else %}
                         <h2 class="card-text title  {{ day.0|date:"j" }}"> {{ day.0|date:"l" }} </h2>

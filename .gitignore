@@ -5,6 +5,7 @@
 /.venv
 venv
 db.*
+*.png
 
 __pycache__/
 *.pyc
