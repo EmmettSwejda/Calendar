@@ -95,6 +95,15 @@ function ProccessData(data) {
                 }
 
             });
+
+    let curr_day = document.getElementsByClassName("today");
+    curr_day[0].classList.remove("today");
+
+
+    const d = new Date();
+
+    let new_day = document.getElementsByClassName(d.getDate());
+    new_day[0].classList.add('today');
 }
 
 
